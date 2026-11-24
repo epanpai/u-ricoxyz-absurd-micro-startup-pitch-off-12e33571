@@ -72,5 +72,8 @@ if (readFileSync(target, 'utf8') !== LINE) {
 
 // Confirm on stdout what was written, so a run log shows the judged
 // text and its length without opening the file: the line itself plus
-// its character count (151), which the gate already bounded to 1–200.
-console.log(`wrote ${LINE.length} chars to ${target}: ${LINE}`);
+// its character count (151) and byte count (151 — pure ASCII, so the
+// two agree), which the gate already bounded to 1–200.
+console.log(
+  `wrote ${LINE.length} chars (${Buffer.byteLength(LINE, 'utf8')} bytes) to ${target}: ${LINE}`,
+);
